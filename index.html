@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Advent Of Code 2020</title>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <h1>Advent Of Code 2020</h1>
+        <div id="settings">
+            <label for="day-select">Which day do you want to run:</label>
+            <select name="day" id="day-select">
+                <option selected>Day 1</option>
+            </select>
+            <br>
+            <label for="input-file">Choose Input:</label>
+            <input type="file" id="input-file">
+            <br>
+            <button id="run-button">Run</button>
+        </div>
+        <div class="hidden" id="timer">
+            <label for="timer-text">Time:</label>
+            <span id="timer-text"></span>
+        </div>
+        <div class="hidden" id="error">
+            <label for="error-text">Error:</label>
+            <span id="error-text" class="error"></span>
+        </div>
+        <div class="hidden" id="part1">
+            <label for="part1-ans">Part1: </label>
+            <span id="part1-ans"></span>
+        </div>
+        <div class="hidden" id="part2">
+            <label for="part2-ans">Part2: </label>
+            <span id="part2-ans"></span>
+        </div>
+        <script data-main="ts/web/loader.js" src="js/require.js"></script>
+    </body>
+</html>

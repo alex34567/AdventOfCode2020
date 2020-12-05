@@ -15,12 +15,12 @@ export default function(input: readonly string[]): AdventOutput {
     for (let i = 0; i < input.length; i++) {
         for (let j = i + 1; j < input.length; j++) {
             for (let z = j + 1; z < input.length; z++) {
-            let a = Number(input[i]);
-            let b = Number(input[j]);
-            let c = Number(input[z]);
-            if (a + b + c === 2020) {
-                part2 = a * b * c; 
-            }
+                let a = Number(input[i]);
+                let b = Number(input[j]);
+                let c = Number(input[z]);
+                if (a + b + c === 2020) {
+                    part2 = a * b * c; 
+                }
             }
         }
     }

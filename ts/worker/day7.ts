@@ -4,12 +4,17 @@ class Bag {
     name: string;
     be_contained: Bag[] = [];
     contains: [number, Bag][] = [];
+    visited: boolean = false;
 
     constructor(name: string) {
         this.name = name;
     }
 
     depthSearchBeContained(): number {
+        if (this.visited) {
+            return 0;
+        }
+        this.visited = true;
         return this.be_contained.reduce((acc, val) => acc + val.depthSearchBeContained(), 1);
     }
 

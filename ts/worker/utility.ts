@@ -207,3 +207,20 @@ export function powMod(base: number, exponent: number, mod: number): number {
     }
     return res;
 }
+
+export function arrayCompare<T>(lhs: Arrayish<T>, rhs: Arrayish<T>, compare_fun: (lhs: T, rhs: T) => number) {
+    let limit = Math.min(lhs.length, rhs.length);
+    for (let i = 0; i < limit; i++) {
+        let compare = compare_fun(lhs[i], rhs[i]);
+        if (compare !== 0) {
+            return compare;
+        }
+    }
+    return lhs.length - rhs.length;
+
+}
+
+export function numArrayCompare(lhs: Arrayish<number>, rhs: Arrayish<number>): number {
+    return arrayCompare(lhs, rhs, (lhs, rhs) => lhs - rhs);
+}
+

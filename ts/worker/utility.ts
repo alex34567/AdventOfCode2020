@@ -195,17 +195,46 @@ export function Uint32Vector(): TypedVector<Uint32Array> {
     return ret;
 }
 
-export function powMod(base: number, exponent: number, mod: number): number {
+export function powMod(base: number, exponent: number, mod: number): number;
+export function powMod(base: bigint, exponent: bigint, mod: bigint): bigint;
+export function powMod(base: any, exponent: any, mod: any): any {
     base %= mod;
-    let res = 1;
+    let res: any;
+    let two: any;
+    let one: any;
+    if (typeof base === 'number') {
+        res = 1;
+        two = 2;
+        one = 1; 
+    } else {
+        res = 1n;
+        two = 2n;
+        one = 1n;
+    }
     while (exponent > 0) {
-        if (exponent % 2 === 1) {
+        if (exponent % two === one) {
             res = (res * base) % mod;
         }
-        exponent = Math.floor(exponent / 2);
+        exponent /= two;
+        if (typeof exponent === 'number') {
+            exponent = Math.floor(exponent);
+        }
         base = (base * base) % mod;
     }
     return res;
+}
+
+// Mod must be prime!
+export function modInvert(num: number, mod: number): number;
+export function modInvert(num: bigint, mod: bigint): bigint;
+export function modInvert(num: any, mod: any): any {
+    let modMinusTwo;
+    if (typeof mod === 'bigint') {
+        modMinusTwo = mod - 2n;
+    } else {
+        modMinusTwo = mod - 2;
+    }
+    return powMod(num, modMinusTwo as any, mod);
 }
 
 export function arrayCompare<T>(lhs: Arrayish<T>, rhs: Arrayish<T>, compare_fun: (lhs: T, rhs: T) => number) {

@@ -84,6 +84,7 @@ export default function (raw_input: readonly string[]): AdventOutput {
                 reduced.push(mapping[i][0]);
             }
         }
+
         for (let index of reduced) {
             for (let i = 0; i < mapping.length; i++) {
                 if (mapping[i].length === 1 && mapping[i][0] === index) {
@@ -97,7 +98,7 @@ export default function (raw_input: readonly string[]): AdventOutput {
     let part2 = 1;
     for (let i = 0; i < my_ticket.length; i++) {
         if (rules[reduced[i]][0].startsWith('departure')) {
-            part2 *= my_ticket[reduced[i]];
+            part2 *= my_ticket[i];
         }
     }
     return { part1: String(part1), part2: String(part2) };

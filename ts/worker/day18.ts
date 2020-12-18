@@ -14,6 +14,7 @@ function parseInput(input: readonly string[], part2: boolean): string {
     let ans = 0;
     for (let line of input) {
         let tokens = line.split(/(\(|\)|\+|\*)| /g).filter(x => x);
+        tokens.push(')');
         function eval_expr(index: (peek: boolean) => number, tokens: String[], add_first: boolean): number {
             function get_num() {
                 let raw = tokens[index(false)];
@@ -26,11 +27,11 @@ function parseInput(input: readonly string[], part2: boolean): string {
             let acc = get_num();
             let new_tokens = [];
             
-            while (index(true) < tokens.length) {
+            while (true) {
                 let op = tokens[index(false)];
                 if (op === ')') {
                     if (add_first) {
-                        new_tokens.push(String(acc));
+                        new_tokens.push(String(acc), ')');
                         return eval_expr(indexInc(0), new_tokens, false);
                     }
                     return acc;
@@ -42,21 +43,15 @@ function parseInput(input: readonly string[], part2: boolean): string {
                         break;
                     case '*':
                         if (add_first) {
-                            new_tokens.push(String(acc));
-                            new_tokens.push('*');
+                            new_tokens.push(String(acc), '*');
                             acc = arg;
                         } else {
                             acc *= arg;
                         }
                         break;
                 }
+            }
 
-            }
-            if (add_first) {
-                new_tokens.push(String(acc));
-                return eval_expr(indexInc(0), new_tokens, false);
-            }
-            return acc;
         }
         ans += eval_expr(indexInc(0), tokens, part2);
     }

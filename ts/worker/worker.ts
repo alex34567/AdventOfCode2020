@@ -18,6 +18,7 @@ import Day16 from 'day16';
 import Day17 from 'day17';
 import Day18 from 'day18';
 import Day19 from 'day19';
+import Day20 from 'day20';
 
 function postWrapper(res: AdventRes): void {
     postMessage(res);
@@ -87,6 +88,9 @@ addEventListener('message', (mesg: MessageEvent<AdventWorkerJob>) => {
                 break;
             case 19:
                 postWrapper(Day19(input));
+                break;
+            case 20:
+                postWrapper(Day20(input));
                 break;
             default:
                 throw "Invalid Dayn";

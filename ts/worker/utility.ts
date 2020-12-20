@@ -253,3 +253,16 @@ export function numArrayCompare(lhs: Arrayish<number>, rhs: Arrayish<number>): n
     return arrayCompare(lhs, rhs, (lhs, rhs) => lhs - rhs);
 }
 
+export function reverseString(str: string): string {
+    let ret = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+        let raw_char = str.charCodeAt(i);
+        if (raw_char >= 0xDC00 && raw_char <= 0xDFFF) {
+            throw 'Unicode error';
+        }
+        ret += str[i];
+    }
+
+    return ret;
+}
+

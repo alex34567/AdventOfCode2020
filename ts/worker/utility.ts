@@ -253,6 +253,10 @@ export function numArrayCompare(lhs: Arrayish<number>, rhs: Arrayish<number>): n
     return arrayCompare(lhs, rhs, (lhs, rhs) => lhs - rhs);
 }
 
+export function stringCompare(lhs: string, rhs: string): number {
+    return arrayCompare(lhs, rhs, (lhs, rhs) => lhs.charCodeAt(0) - rhs.charCodeAt(0));
+}
+
 export function reverseString(str: string): string {
     let ret = '';
     for (let i = str.length - 1; i >= 0; i--) {
